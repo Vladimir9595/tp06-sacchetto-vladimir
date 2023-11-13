@@ -9,3 +9,6 @@ export class RemoveFromCart {
   static readonly type = '[Cart] Remove from Cart';
   constructor(public payload: number) {}
 }
+export class ClearCart {
+  static readonly type = '[Cart] Clear Cart';
+}

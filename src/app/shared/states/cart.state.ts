@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { AddToCart, RemoveFromCart } from '../actions/cart.actions';
+import { AddToCart, RemoveFromCart, ClearCart } from '../actions/cart.actions';
 import { Product } from '../models/product';
 
 export interface CartStateModel {
@@ -41,6 +41,13 @@ export class CartState {
     );
     ctx.patchState({
       items: updatedItems,
+    });
+  }
+
+  @Action(ClearCart)
+  clearCart(ctx: StateContext<CartStateModel>) {
+    ctx.setState({
+      items: [],
     });
   }
 }
