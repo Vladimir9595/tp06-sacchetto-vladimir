@@ -1,1 +1,14 @@
-<h1 class="pt-3 mt-3">Catalogue des produits</h1>
+<h1 class="pt-4 mt-3">Catalogue des produits</h1>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active fs-5" routerLink="catalog">Catalogue</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active fs-5" routerLink="cart"
+      >Panier ({{ cartItemCount$ | async }})</a
+    >
+  </li>
+</ul>
+<main>
+  <router-outlet></router-outlet>
+</main>
