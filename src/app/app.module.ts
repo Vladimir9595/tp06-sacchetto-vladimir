@@ -3,12 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
+import { CartState } from './shared/states/cart.state';
 
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { CatalogComponent } from './catalog/catalog.component';
-import { SearchComponent } from './search/search.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
+import { SearchComponent } from './components/search/search.component';
+import { CartComponent } from './components/cart/cart.component';
+
+const appRoutes: Routes = [
+  { path: 'catalog', component: CatalogComponent },
+  { path: 'cart', component: CartComponent },
+];
 
 @NgModule({
   declarations: [
@@ -17,8 +25,15 @@ import { SearchComponent } from './search/search.component';
     FooterComponent,
     CatalogComponent,
     SearchComponent,
+    CartComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, NgxsModule.forRoot()],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    NgxsModule.forRoot([CartState]),
+    RouterModule.forRoot(appRoutes),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
