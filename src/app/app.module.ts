@@ -14,7 +14,11 @@ import { SearchComponent } from './components/search/search.component';
 import { CartComponent } from './components/cart/cart.component';
 
 const appRoutes: Routes = [
-  { path: 'catalog', component: CatalogComponent },
+  {
+    path: 'catalog',
+    component: CatalogComponent,
+    children: [{ path: '', component: SearchComponent }],
+  },
   { path: 'cart', component: CartComponent },
 ];
 
