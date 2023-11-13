@@ -14,12 +14,12 @@ import { SearchComponent } from './components/search/search.component';
 import { CartComponent } from './components/cart/cart.component';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
   {
-    path: 'catalog',
-    component: CatalogComponent,
-    children: [{ path: '', component: SearchComponent }],
+    path: 'catalogue',
+    component: SearchComponent,
   },
-  { path: 'cart', component: CartComponent },
+  { path: 'panier', component: CartComponent },
 ];
 
 @NgModule({
@@ -38,6 +38,7 @@ const appRoutes: Routes = [
     NgxsModule.forRoot([CartState]),
     RouterModule.forRoot(appRoutes),
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent],
 })
