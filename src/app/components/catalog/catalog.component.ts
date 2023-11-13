@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { Product } from '../shared/models/product';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../shared/models/product';
+import { Store } from '@ngxs/store';
+import { AddToCart } from '../../shared/actions/cart.actions';
 
 @Component({
   selector: 'app-catalog',
@@ -10,11 +12,15 @@ import { Product } from '../shared/models/product';
 export class CatalogComponent implements OnInit {
   filteredProducts: Product[] = [];
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private store: Store) {
     productService.filteredProducts.subscribe((data) => {
       this.filteredProducts = data;
     });
   }
 
   ngOnInit(): void {}
+
+  addToCart(product: Product) {
+    this.store.dispatch(new AddToCart(product));
+  }
 }
