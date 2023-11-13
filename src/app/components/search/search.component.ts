@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { Product } from '../shared/models/product';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../shared/models/product';
 
 @Component({
   selector: 'app-search',
