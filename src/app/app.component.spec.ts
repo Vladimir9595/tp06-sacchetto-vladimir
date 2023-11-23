@@ -14,10 +14,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'tp04-sacchetto-vladimir'`, () => {
+  it(`should have as title 'tp05-sacchetto-vladimir'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('tp04-sacchetto-vladimir');
+    expect(app.title).toEqual('tp05-sacchetto-vladimir');
   });
 
   it('should render title', () => {
@@ -25,7 +25,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'tp04-sacchetto-vladimir app is running!'
+      'tp05-sacchetto-vladimir app is running!'
     );
   });
 });
