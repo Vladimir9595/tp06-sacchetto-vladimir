@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { Product } from '../../shared/models/product';
+import { Observable } from 'rxjs';
+import { ProductService } from '../../../services/product.service';
+import { Product } from '../../../shared/models/product';
 import { Store } from '@ngxs/store';
-import { AddToCart } from '../../shared/actions/cart.actions';
+import { AddToCart } from '../../../shared/actions/cart.actions';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css'],
+  providers: [ProductService],
 })
 export class CatalogComponent implements OnInit {
-  filteredProducts: Product[] = [];
+  searchName: string = '';
+  searchCategory: string = '';
+  searchPrice: number = 0;
+  products$: Observable<Product[]>;
 
   constructor(private productService: ProductService, private store: Store) {
-    productService.filteredProducts.subscribe((data) => {
-      this.filteredProducts = data;
-    });
+    this.products$ = this.productService.getProducts();
   }
 
   ngOnInit(): void {}
