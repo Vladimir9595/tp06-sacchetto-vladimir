@@ -1,25 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { NgxsModule } from '@ngxs/store';
-import { CartState } from './shared/states/cart.state';
 
 import { RouterModule, Routes } from '@angular/router';
+import { ApiHttpInterceptor } from './http-interceptor';
+
+import { CartState } from './shared/states/cart.state';
+import { ProductService } from './services/product.service';
+import { FilterPipe } from './components/products/filter.pipe';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CatalogComponent } from './components/catalog/catalog.component';
-import { SearchComponent } from './components/search/search.component';
+import { CatalogComponent } from './components/products/catalog/catalog.component';
 import { CartComponent } from './components/cart/cart.component';
+import { LoginComponent } from './components/login/login.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'catalogue',
-    component: SearchComponent,
+    component: CatalogComponent,
   },
   { path: 'panier', component: CartComponent },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
@@ -28,10 +35,12 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     CatalogComponent,
-    SearchComponent,
     CartComponent,
+    LoginComponent,
+    FilterPipe,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -39,7 +48,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true },
+    ProductService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
