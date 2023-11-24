@@ -7,7 +7,7 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 export class ProductService {
-  private productsUrl = './assets/products.json';
+  private productsUrl = environment.backendCatalogue;
   private loginUrl = environment.backendLoginClient;
 
   constructor(private http: HttpClient) {}
