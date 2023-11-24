@@ -30,5 +30,19 @@
     Connexion
   </button>
 
-  <div *ngIf="cnx">Bonjour {{ nom }} - {{ prenom }}</div>
+  <div *ngIf="validMessage" class="alert alert-success">
+    {{ validMessage }}
+  </div>
+
+  <div class="mb-4 fs-5" *ngIf="cnx">
+    <p>Bonjour {{ lastName }} - {{ firstName }}</p>
+    <p>
+      Rendez-vous dans notre
+      <a class="text-decoration-none" routerLink="/catalogue">catalogue</a>
+    </p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
 </div>
