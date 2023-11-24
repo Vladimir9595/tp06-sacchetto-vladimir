@@ -11,18 +11,25 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  nom: string = '';
-  prenom: string = '';
+  firstName: string = '';
+  lastName: string = '';
   cnx: boolean = false;
+  errorMessage: string = '';
+  validMessage: string = '';
 
   constructor(private prodService: ProductService) {}
   connexion() {
-    this.prodService
-      .loginClient(this.username, this.password)
-      .subscribe((c) => {
-        this.username = c.username;
-        this.password = c.password;
+    this.prodService.loginClient(this.username, this.password).subscribe(
+      (c) => {
+        this.firstName = c.firstName;
+        this.lastName = c.lastName;
         this.cnx = true;
-      });
+        this.validMessage = 'Connexion réussie';
+        this.errorMessage = '';
+      },
+      () => {
+        this.errorMessage = 'Identifiants incorrects. Veuillez réessayer.';
+      }
+    );
   }
 }
