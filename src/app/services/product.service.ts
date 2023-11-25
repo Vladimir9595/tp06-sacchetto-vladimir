@@ -23,7 +23,7 @@ export class ProductService {
     return this.http.post<Client>(this.loginUrl, data, httpOptions);
   }
 
-  getProducts(): Observable<Product[]> {
+  public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsUrl);
   }
 }
