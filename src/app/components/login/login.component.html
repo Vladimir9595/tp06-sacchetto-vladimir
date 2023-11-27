@@ -34,13 +34,16 @@
     <div *ngIf="validMessage" class="alert alert-success">
       {{ validMessage }}
     </div>
-
-    <div class="mb-4 fs-5" *ngIf="cnx">
-      <p>Bonjour {{ lastName }} - {{ firstName }}</p>
-      <p>
-        Rendez-vous dans notre
-        <a class="text-decoration-none" routerLink="/catalogue">catalogue</a>
-      </p>
+    <div class="custom-box" *ngIf="cnx">
+      <div>
+        <p class="custom-message px-5">
+          Bonjour {{ lastName }} - {{ firstName }}
+        </p>
+        <p>
+          Rendez-vous dans notre
+          <a class="custom-link" routerLink="/catalogue">catalogue</a>
+        </p>
+      </div>
     </div>
 
     <div *ngIf="errorMessage" class="alert alert-danger">
