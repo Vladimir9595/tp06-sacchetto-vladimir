@@ -55,7 +55,7 @@ function getUtilisateur(Request $request, Response $response, $args)
     $payload = getJWTToken($request);
     $login  = $payload->userid;
 
-    $flux = '{"lastName":"Curtis","firstName":"emma"}';
+    $flux = '{"lastName":"Watson","firstName":"Emma"}';
 
     $response->getBody()->write($flux);
 
@@ -75,8 +75,8 @@ function postLogin(Request $request, Response $response, $args)
             $token = createJWT($response);
 
             $userData = [
-                'lastName' => 'Curtis',
-                'firstName' => 'emma',
+                'lastName' => 'Watson',
+                'firstName' => 'Emma',
             ];
 
             $flux = json_encode($userData);
@@ -91,4 +91,13 @@ function postLogin(Request $request, Response $response, $args)
 
     $response->getBody()->write(json_encode(['error' => 'Identifiants incorrects']));
     return $response->withStatus(401)->withHeader('Content-Type', 'application/json');
+}
+
+function postLogout(Request $request, Response $response, $args)
+{
+    $response = $response->withHeader('Set-Cookie', 'jwt=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT');
+
+    $response->getBody()->write(json_encode(['message' => 'Déconnexion réussie']));
+
+    return addHeaders($response);
 }
