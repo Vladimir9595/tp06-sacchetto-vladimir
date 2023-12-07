@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "tp05-sacchetto-vladimir": {
+    "tp06-sacchetto-vladimir": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tp05-sacchetto-vladimir",
+            "outputPath": "dist/tp06-sacchetto-vladimir",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -53,10 +53,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "tp05-sacchetto-vladimir:build:production"
+              "browserTarget": "tp06-sacchetto-vladimir:build:production"
             },
             "development": {
-              "browserTarget": "tp05-sacchetto-vladimir:build:development"
+              "browserTarget": "tp06-sacchetto-vladimir:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -64,7 +64,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tp05-sacchetto-vladimir:build"
+            "browserTarget": "tp06-sacchetto-vladimir:build"
           }
         },
         "test": {
