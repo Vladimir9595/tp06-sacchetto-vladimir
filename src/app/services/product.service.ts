@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Product } from '../shared/models/product';
 import { Client } from '../shared/models/client';
 import { environment } from '../environments/environment';
@@ -25,5 +25,14 @@ export class ProductService {
 
   public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsUrl);
+  }
+
+  searchCatalog(searchTerm: string): Observable<any> {
+    if (searchTerm && searchTerm.trim().length >= 1) {
+      const url = `https://siweb-search.onrender.com/api/catalogue/${searchTerm}`;
+      return this.http.get(url);
+    } else {
+      return of([]);
+    }
   }
 }
